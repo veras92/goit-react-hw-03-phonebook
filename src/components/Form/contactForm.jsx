@@ -3,7 +3,7 @@ import { nanoid } from 'nanoid';
 import PropTypes from 'prop-types';
 import styles from './contactForm.module.css';
 
-export default class ContactForm extends Component {
+export class ContactForm extends Component {
   state = {
     name: '',
     number: '',

@@ -2,7 +2,7 @@ import { Component } from 'react';
 import PropTypes from 'prop-types';
 import styles from './contactsListItem.module.css';
 
-export default class ContactsListItem extends Component {
+export class ContactsListItem extends Component {
   static defaultProps = {
     id: '',
     name: '',

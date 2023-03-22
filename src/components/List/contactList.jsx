@@ -1,9 +1,9 @@
 import { Component } from 'react';
-import ContactsListItem from './ListItems/contactListItem';
+import { ContactsListItem } from './ListItems/contactListItem';
 import PropTypes from 'prop-types';
 import styles from './contactsList.module.css';
 
-export default class ContactsList extends Component {
+export class ContactsList extends Component {
   static defaultProps = {
     contacts: [],
   };

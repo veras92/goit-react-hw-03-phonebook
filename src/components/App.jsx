@@ -1,6 +1,6 @@
 import { Component } from 'react';
-import ContactForm from './Form/contactForm';
-import ContactsList from './List/contactList';
+import { ContactForm } from './Form/contactForm';
+import { ContactsList } from './List/contactList';
 import { Filter } from './Filter/contactFilter';
 import Notiflix from 'notiflix';
 
@@ -15,14 +15,32 @@ export class App extends Component {
     filter: '',
   };
 
+  componentDidMount() {
+    const contacts = localStorage.getItem('Contacts');
+    const parsedContacts = JSON.parse(contacts);
+    if (parsedContacts) {
+      this.setState({
+        contacts: parsedContacts,
+      });
+    }
+  }
+
+  componentDidUpdate(prevState) {
+    const { contacts } = this.state;
+    if (contacts !== prevState.contacts) {
+      localStorage.setItem('Contacts', JSON.stringify(contacts));
+    }
+  }
+
   addContact = ({ id, name, number }) => {
     const { contacts } = this.state;
     if (
       contacts.find(
         contact => contact.name.toLowerCase() === name.toLowerCase()
       )
-    )
+    ) {
       return Notiflix.Notify.failure(`${name} is already in contacts`);
+    }
 
     this.setState(prevState => {
       return { contacts: [...prevState.contacts, { id, name, number }] };
